@@ -9,11 +9,7 @@ public class Thing{
     private String owner;
 
     public static boolean isSuccessful() {
-        return successful;
-    }
-
-    public static void setSuccessful(boolean successful) {
-        Thing.successful = successful;
+        return isSuccessful();
     }
 
     public String getTitle() {
