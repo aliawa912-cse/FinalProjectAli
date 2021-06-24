@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         fbAdd = findViewById(R.id.fbAdd);
         svSearch = findViewById(R.id.svSeach);
         FirebaseAuth auth = FirebaseAuth.getInstance();
+
+
+
         if (auth.getCurrentUser() == null) {
             finish();
             startActivity(new Intent(this, SigninActivity.class));
