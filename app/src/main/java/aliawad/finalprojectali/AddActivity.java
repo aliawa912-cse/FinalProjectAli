@@ -179,7 +179,7 @@ public class AddActivity extends AppCompatActivity {
 
         FirebaseAuth auth=FirebaseAuth.getInstance();
         String uid=auth.getCurrentUser().getUid();
-        T.setTitle(uid);
+        T.setOwner(uid);
 
         String key = reference.child("Things").push().getKey();
         T.setKey(key);

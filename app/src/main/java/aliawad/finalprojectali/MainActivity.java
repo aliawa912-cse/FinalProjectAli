@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         //6 search: delete method calling
-        // readTasksFromFirebase("");
+         readTasksFromFirebase("");
     }
     //4 search: add parameter toi search
     public void readTasksFromFirebase(final String stTosearch) {
@@ -66,10 +67,8 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();//to get current UID
         String uid = auth.getUid();
         DatabaseReference reference = database.getReference();
-        //orderByChild("title").equalTo(stTosearch)// 5+6
-        reference.child("tasks");
-        reference.child(uid);
-        reference.addValueEventListener(new ValueEventListener() {
+
+        reference.child("Things").child(uid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 thingsAdapter.clear();
@@ -89,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+                Toast.makeText(MainActivity.this, "databaseError"+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                databaseError.toException().printStackTrace();            }
         });
     }
 

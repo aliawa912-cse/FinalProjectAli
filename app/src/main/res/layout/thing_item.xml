@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/itmimageview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/itmLink"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_crop" />
@@ -19,29 +20,32 @@
         android:id="@+id/itmcab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
+        android:layout_marginBottom="7dp"
         android:text="Categrm"
-        app:layout_constraintEnd_toEndOf="@+id/itmTitle"
-        app:layout_constraintStart_toEndOf="@+id/itmTitle"
+        app:layout_constraintBottom_toTopOf="@+id/itmLink"
+        app:layout_constraintStart_toStartOf="@+id/itmTitle"
         app:layout_constraintTop_toBottomOf="@+id/itmTitle" />
 
     <TextView
         android:id="@+id/itmTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="102dp"
+        android:layout_marginTop="8dp"
         android:text="Title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/itmcab"
+        app:layout_constraintStart_toEndOf="@+id/itmimageview"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <TextView
         android:id="@+id/itmLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="126dp"
+        android:layout_marginEnd="332dp"
         android:text="Link"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/itmimageview"
+        app:layout_constraintTop_toBottomOf="@+id/itmcab" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
