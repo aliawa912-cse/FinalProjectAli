@@ -49,7 +49,7 @@ public class ThingsAdapter extends ArrayAdapter<Thing> {
         TextView Link = vitem.findViewById(R.id.itmLink);
         final Thing thing = getItem(position);
         if(thing.getImage().length()!=0)
-            downloadImageUsingPicasso(thing.getImage(),Image);
+              downloadImageUsingPicasso(thing.getImage(),Image);
 
         Title.setText(thing.getTitle());
         Categrm.setText(thing.getTitle());
