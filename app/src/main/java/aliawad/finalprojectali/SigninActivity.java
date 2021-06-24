@@ -83,7 +83,7 @@ public class SigninActivity extends AppCompatActivity {
     }
 
     private void Signin(String stEmail, String stPassw) {
-        //  FirebaseDatabase auth=FirebaseDatabase.getInstance();
+        auth=FirebaseAuth.getInstance();
         auth.signInWithEmailAndPassword(stEmail,stPassw).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -100,5 +100,8 @@ public class SigninActivity extends AppCompatActivity {
             }
         });
 
+    }
+    public void setBtnLogIn(View view){
+        startActivity(new Intent(getApplicationContext(),SigninActivity.class));
     }
 }

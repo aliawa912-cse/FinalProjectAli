@@ -46,7 +46,6 @@ public class AddActivity extends AppCompatActivity {
     private EditText etTitle,etCategrm,etLink;
     private ImageView ImImageView;
     private Button btnSave;
-    private String key;
     private Uri toUploadimageUri;//local address
     private Uri downladuri;//firebase/cloude address
     private Thing T;
@@ -70,6 +69,7 @@ public class AddActivity extends AppCompatActivity {
                 validateForm();
             }
         });
+
         ImImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,7 +85,7 @@ public class AddActivity extends AppCompatActivity {
 //                        pickImageFromGallery();
 //                    }
 //                }
-                selectImage(getApplicationContext());
+                pickImageFromGallery();
             }
         });
     }
@@ -125,6 +125,7 @@ public class AddActivity extends AppCompatActivity {
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
                          ImImageView.setImageBitmap(selectedImage);
                         toUploadimageUri=data.getData();
+                        ImImageView.setImageURI(toUploadimageUri);
                     }
 
                     break;
@@ -162,7 +163,7 @@ public class AddActivity extends AppCompatActivity {
             T.setTitle(title);
             if (toUploadimageUri==null)
             {
-                T.setImage(null);
+                T.setImage("");
                 createThing(T);
             }
             else
@@ -180,12 +181,12 @@ public class AddActivity extends AppCompatActivity {
         String uid=auth.getCurrentUser().getUid();
         T.setTitle(uid);
 
-        String Key = reference.child("Things").push().getKey();
+        String key = reference.child("Things").push().getKey();
         T.setKey(key);
         reference.child("Things").child(uid).child(key).setValue(T).addOnCompleteListener(AddActivity.this, new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if (Thing.isSuccessful()){
+                if (task.isSuccessful()){
                     Toast.makeText(AddActivity.this,"Add Successful",Toast.LENGTH_SHORT).show();
                     finish();
                 }
