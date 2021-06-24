@@ -34,6 +34,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.IOException;
 import java.util.UUID;
 
 
@@ -118,39 +119,56 @@ public class AddActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != RESULT_CANCELED) {
-            switch (requestCode) {
-                case 0:
-                    if (resultCode == RESULT_OK && data != null) {
-                        Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
-                         ImImageView.setImageBitmap(selectedImage);
-                        toUploadimageUri=data.getData();
-                        ImImageView.setImageURI(toUploadimageUri);
-                    }
-
-                    break;
-                case 1:
-                    if (resultCode == RESULT_OK && data != null) {
-                       toUploadimageUri = data.getData();
-                        String[] filePathColumn = {MediaStore.Images.Media.DATA};
-                        if (toUploadimageUri != null) {
-                            Cursor cursor = getContentResolver().query(toUploadimageUri,
-                                    filePathColumn, null, null, null);
-                            if (cursor != null) {
-                                cursor.moveToFirst();
-
-                                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                                String picturePath = cursor.getString(columnIndex);
-                                ImImageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-                                cursor.close();
-                            }
-                        }
-
-                    }
-                    break;
+        if(requestCode == IMAGE_PICK_CODE && resultCode == RESULT_OK
+                && data != null && data.getData() != null )
+        {
+            toUploadimageUri = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), toUploadimageUri);
+                ImImageView.setImageBitmap(bitmap);
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
             }
         }
     }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode != RESULT_CANCELED) {
+//            switch (requestCode) {
+//                case IMAGE_PICK_CODE:
+//                    if (resultCode == RESULT_OK && data != null) {
+//                        Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
+//                         ImImageView.setImageBitmap(selectedImage);
+//                        toUploadimageUri=data.getData();
+//                        ImImageView.setImageURI(toUploadimageUri);
+//                    }
+//
+//                    break;
+//                case 1:
+//                    if (resultCode == RESULT_OK && data != null) {
+//                       toUploadimageUri = data.getData();
+//                        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+//                        if (toUploadimageUri != null) {
+//                            Cursor cursor = getContentResolver().query(toUploadimageUri,
+//                                    filePathColumn, null, null, null);
+//                            if (cursor != null) {
+//                                cursor.moveToFirst();
+//
+//                                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+//                                String picturePath = cursor.getString(columnIndex);
+//                                ImImageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+//                                cursor.close();
+//                            }
+//                        }
+//
+//                    }
+//                    break;
+//            }
+//        }
+//    }
     private void validateForm(){
         boolean isok=true;
         String title=etTitle.getText().toString();
@@ -250,7 +268,7 @@ public class AddActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Uri> task) {
                                     downladuri = task.getResult();
-                                    T.setImage(downladuri.getPath());
+                                    T.setImage(downladuri.toString());
                                     createThing(T);
 
                                 }
