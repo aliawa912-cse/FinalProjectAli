@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "38410191047",
+    "firebase_url": "https://finalprojectali-default-rtdb.firebaseio.com",
+    "project_id": "finalprojectali",
+    "storage_bucket": "finalprojectali.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38410191047:android:4084e2e14beb8b93283ee2",
+        "android_client_info": {
+          "package_name": "aliawad.finalprojectali"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "38410191047-93gq6vo5cvgbaecnjc0u58l53en2aac1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "aliawad.finalprojectali",
+            "certificate_hash": "3e3be11ca6200b983387069df7421de199bc5234"
+          }
+        },
+        {
+          "client_id": "38410191047-c3t630b5f88bjc15g3cfnc9l16vngdsv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPyMrpk8b6Ldw7dqvP25J7FUIedRhBj4o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "38410191047-c3t630b5f88bjc15g3cfnc9l16vngdsv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

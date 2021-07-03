@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,9 +52,15 @@ public class ThingsAdapter extends ArrayAdapter<Thing> {
         if(thing.getImage().length()!=0)
               downloadImageUsingPicasso(thing.getImage(),Image);
 
+        Link.setMovementMethod(LinkMovementMethod.getInstance());
+        Link.setTextSize(16);
+        if(thing.link==null || thing.link.length()==0)
+            Link.setCursorVisible(false);
         Title.setText(thing.getTitle());
-        Categrm.setText(thing.getTitle());
-        Link.setText(thing.getTitle());
+        Categrm.setText(thing.getCatg());
+        Link.setText(thing.getLink());
+
+
 
 
         return vitem;
@@ -118,13 +125,6 @@ public class ThingsAdapter extends ArrayAdapter<Thing> {
         });
 
     }
-
-
-
-
-
-
-
 }
 
 

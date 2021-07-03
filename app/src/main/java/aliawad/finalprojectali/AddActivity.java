@@ -179,6 +179,25 @@ public class AddActivity extends AppCompatActivity {
         if (isok){
             T=new Thing();
             T.setTitle(title);
+
+            String Categrm=etCategrm.getText().toString();
+            if (Categrm.length()==0){
+                etCategrm.setError("Categrm can not be Empty");
+                isok=false;
+            }
+            if (isok){
+                T=new Thing();
+                T.setCatg(Categrm);
+            }
+            String Link=etLink.getText().toString();
+            if (Link.length()==0){
+                etLink.setError("link can not be Empty");
+                isok=false;
+            }
+            if (isok){
+                T=new Thing();
+                T.setLink(Link);
+            }
             if (toUploadimageUri==null)
             {
                 T.setImage("");
@@ -186,8 +205,6 @@ public class AddActivity extends AppCompatActivity {
             }
             else
                 uploadImage(toUploadimageUri);
-
-
         }
     }
 
