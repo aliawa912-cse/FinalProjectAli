@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.Calendar;
 
 /**
- * SigninActivity is the first Screen that opend and in the Screen you Enter the email and Password next it go the the  MainActivty that have a list fot the important things.
+ * SigninActivity is the first Screen that opend and in the Screen you Enter the email and Password next it go the the  MainActivty that have a list foR the important things.
  */
 
 
@@ -84,10 +84,16 @@ public class SigninActivity extends AppCompatActivity {
 
     private void Signin(String stEmail, String stPassw) {
         auth=FirebaseAuth.getInstance();
+        /**
+         * מאזין לוקח את תוצאה ובודק אם אימיל אנד באסורד נכונים(תשובה)
+         */
         auth.signInWithEmailAndPassword(stEmail,stPassw).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
+                /**
+                 * אם התוצאה נכונה
+                 */
                 {
                     Intent i=new Intent(SigninActivity.this,MainActivity.class);
                     startActivity(i);
@@ -96,6 +102,11 @@ public class SigninActivity extends AppCompatActivity {
                 {
                     Toast.makeText(SigninActivity.this, "Failed", Toast.LENGTH_SHORT).show();
                     edEmail.setError(task.getException().getMessage());
+                    /**
+                     *set error נותן על היתים עצמו
+                     * TOSAT נותן בסוף העמוד
+                     *  נותן התראות
+                     */
                 }
             }
         });

@@ -121,6 +121,9 @@ public class AddActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == IMAGE_PICK_CODE && resultCode == RESULT_OK
                 && data != null && data.getData() != null )
+        /**
+         * קוד יתאקד אזא הי סורהIMAGE_PICK_CODE
+         */
         {
             toUploadimageUri = data.getData();
             try {
@@ -200,7 +203,7 @@ public class AddActivity extends AppCompatActivity {
             }
             if (toUploadimageUri==null)
             {
-                T.setImage("");
+                T.setImage("Image");
                 createThing(T);
             }
             else

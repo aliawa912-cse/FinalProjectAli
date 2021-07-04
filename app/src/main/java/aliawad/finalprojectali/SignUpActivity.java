@@ -26,6 +26,9 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     @Override
+    /**
+     * מעגל החיים ובונה אקתיויתי ועובדת פעם אחת
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
@@ -105,10 +108,16 @@ public class SignUpActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Signing up,Failed" + task.getException(), Toast.LENGTH_SHORT).show();
                     etEmail2.setError("Signing up,Failed" + task.getException());
+                    /**
+                     * GETEXCEPTION Returns the exception that caused the Task to fail.
+                     */
                 }
 
             }
         };
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(listener);
+        /**
+         * בונה אנד שולח איתו ליסנר
+         */
     }
 }

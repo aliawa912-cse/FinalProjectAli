@@ -28,6 +28,11 @@ import aliawad.finalprojectali.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+/**
+ * אדאבתר הוא מעבר בין פיאר ביס לליסת ויו
+ * עושה פירמשן בגלל לאשר לו לקחת תמונה או לכנס לתמונות
+ */
+
 public class ThingsAdapter extends ArrayAdapter<Thing> {
     public ThingsAdapter(@Nullable Context context) {
         super(context, R.layout.thing_item);
@@ -49,6 +54,9 @@ public class ThingsAdapter extends ArrayAdapter<Thing> {
         ImageView Image = vitem.findViewById(R.id.itmimageview);
         TextView Link = vitem.findViewById(R.id.itmLink);
         final Thing thing = getItem(position);
+        /**
+         * POSTION הוא רואה את המקום שלהם מינוס 1
+         */
         if(thing.getImage().length()!=0)
               downloadImageUsingPicasso(thing.getImage(),Image);
 

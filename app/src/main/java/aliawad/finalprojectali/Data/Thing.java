@@ -1,5 +1,8 @@
 package aliawad.finalprojectali.Data;
 
+/**
+ * מה שאני שומר בפיר בייס
+ */
 public class Thing{
     public String title;
     public String catg;
